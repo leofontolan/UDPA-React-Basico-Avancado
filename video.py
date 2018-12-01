@@ -1,6 +1,7 @@
 class Video:
 
-    """ This class works to take advantage of the information that is always repeated in all movies"""
+    """ This class works to take advantage of the information that
+    is always repeated in all movies"""
     def __init__(self, title, duration, image_url, trailer_url, info):
         self.title = title
         self.duration = duration
