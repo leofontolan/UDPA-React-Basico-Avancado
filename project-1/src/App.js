@@ -3,6 +3,7 @@ import { Component } from "react";
 
 class App extends Component {
   state = {
+    counter: 0,
     posts: [
       {
         id: 1,
@@ -22,12 +23,37 @@ class App extends Component {
     ],
   };
 
+  timeoutUpdate = null;
+  
+  componentDidMount(){
+    this.handleTimeout();
+  }
+
+  componentDidUpdate(){
+    // this.handleTimeout();
+  }
+  
+  componentWillUnmount(){
+    clearTimeout(this.timeoutUpdate);
+  }
+
+  handleTimeout  = () => {
+    const { posts, counter } = this.state;
+    posts[0].title = 'Ulêlê Ulálá';
+
+    this.timeoutUpdate = setTimeout(() => {
+      this.setState({ posts, counter: counter + 1 });
+    }, 1000);
+  }
+
+
   render() {
     //Atribuição por Destructuring
-    const { posts } = this.state;
+    const { posts, counter } = this.state;
 
     return (
       <div className="App">
+        <p>{ counter }</p>
         {posts.map((post) => (
           <div key={post.id}>
             <h1>{post.title}</h1>
